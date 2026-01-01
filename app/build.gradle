@@ -1,0 +1,77 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.example.tripplanner'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "com.example.tripplanner"
+        minSdk 28
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // Add packagingOptions here
+    packagingOptions {
+        merge 'META-INF/LICENSE.md'
+        merge 'META-INF/NOTICE.md'
+    }
+
+}
+dependencies {
+    // ✅ AndroidX Core & UI Components
+    implementation libs.core.ktx
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.constraintlayout
+
+    // ✅ RecyclerView
+    implementation libs.recyclerview
+
+    // ✅ Room Database
+    implementation libs.room.runtime
+    annotationProcessor libs.androidx.room.compiler
+
+    // ✅ Lifecycle ViewModel & LiveData
+    implementation libs.androidx.lifecycle.livedata.ktx
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+
+    // ✅ OpenStreetMap (OSMDroid)
+    implementation libs.osmdroid.android
+
+    // ✅ Currency Conversion API (Retrofit)
+    implementation libs.retrofit
+    implementation libs.converter.gson
+
+    // ✅ JSON Parsing (Gson)
+    implementation libs.gson
+
+    // ✅ GraphHopper Routing Library
+    implementation libs.graphhopper.core
+    implementation libs.graphhopper.reader.osm  // <-- Required for .pbf support!
+
+    implementation 'com.google.android.material:material:1.11.0'
+
+    // ✅ Testing Dependencies
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit.v115
+    androidTestImplementation libs.androidx.espresso.core.v351
+}
+
